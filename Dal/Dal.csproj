@@ -49,6 +49,10 @@
     <Compile Include="SqliteHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{314bfc0c-997c-4e90-837e-9cbe02fc5677}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{d1db0993-3be4-403b-82dd-d28c6e72473b}</Project>
       <Name>Model</Name>

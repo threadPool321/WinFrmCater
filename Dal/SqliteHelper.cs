@@ -53,5 +53,16 @@ namespace Dal
             }
                 
         }
+        public static int ExecuteNonQuery(string sql,params SQLiteParameter[] parm)
+        {
+            using(SQLiteConnection conn=new SQLiteConnection(_SqlConn))
+            {
+                SQLiteCommand comm = new SQLiteCommand(sql,conn);
+                comm.Parameters.AddRange(parm);
+                conn.Open();
+                int execResult = comm.ExecuteNonQuery();
+                return execResult;
+            }
+        }
     }
 }
