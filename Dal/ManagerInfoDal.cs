@@ -12,12 +12,26 @@ namespace Dal
 {
     public class ManagerInfoDal
     {
-        public List<ManagerInfo> GetList()
+        /// <summary>
+        /// 查询/单个查询，如果传进来的对象是null,那就是查询所有的
+        /// </summary>
+        /// <returns></returns>
+        public List<ManagerInfo> GetList(ManagerInfo mi)
         {
-            //执行查询，获取数据
-            DataTable table = SqliteHelper.GetList("select * from managerInfo");
             //构建集合对象
             List<ManagerInfo> list = new List<ManagerInfo>();
+            SQLiteParameter[] para = new SQLiteParameter[2];
+            //查询sql 语句
+            string str = "select * from managerInfo";
+            if(mi!=null)
+            {
+                str += " where Mname=@name and Mpwd=@pwd";
+                para[0] = new SQLiteParameter("@name", mi.MName);
+                para[1] = new SQLiteParameter("@pwd",Common.MD5Helper.GetMD5Str(mi.MPwd));
+            }
+            //执行查询，获取数据
+            DataTable table = SqliteHelper.GetList(str,para);
+           
             //遍历数据表，将数据转存到集合中
             foreach (DataRow item in table.Rows)
             {

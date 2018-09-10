@@ -37,7 +37,7 @@ namespace Dal
             }
                 
         }
-        public static DataTable GetList(string sql)
+        public static DataTable GetList(string sql,params SQLiteParameter[] parameter)
         {
             //构建连接对象
             using (SQLiteConnection conn=new SQLiteConnection(_SqlConn))
@@ -46,6 +46,7 @@ namespace Dal
                 //conn.Open();
                 //构建桥接器
                 SQLiteDataAdapter dap = new SQLiteDataAdapter(sql,conn);
+                dap.SelectCommand.Parameters.AddRange(parameter);
                 //构建表对象
                 DataTable dt = new DataTable();
                 dap.Fill(dt);
