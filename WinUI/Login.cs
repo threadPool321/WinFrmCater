@@ -39,6 +39,7 @@ namespace WinUI
             {
                 //登陆成功后进入主窗体
                 MainForm mainForm = new MainForm();
+                mainForm.Tag = manager.MType;
                 //一定要注意登陆成功后登陆窗口要退出的，但是因为主窗体打开了所以不能关闭调，那么
                 //要做的就是让登陆窗口隐藏调，还有就是当关闭mainform时，因为登陆窗口只是隐藏掉了，其实还在执行，所以mainform
                 //退出是要执行那个事件FormClosing,窗体关闭执行事件

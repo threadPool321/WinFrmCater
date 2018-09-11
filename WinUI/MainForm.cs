@@ -24,7 +24,36 @@ namespace WinUI
         {
             Application.Exit();
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            //窗体加载时确定订单
+          
+            if(this.Tag!= null && this.Tag.ToString() == "0")
+            {
+                //表示是店员的权限
+                menuManager.Visible = false;
+            }
+
+        }
+        //退出
+        private void menuQuit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
         #endregion
 
+        private void menuManager_Click(object sender, EventArgs e)
+        {
+            //显示出管理员列表
+            ManagerInfoList mif = new ManagerInfoList();
+            mif.Show();
+        }
+        //会员类型表
+        private void menuMember_Click(object sender, EventArgs e)
+        {
+            MemberTypeInfo mti = new MemberTypeInfo();
+            mti.Show();
+        }
     }
 }

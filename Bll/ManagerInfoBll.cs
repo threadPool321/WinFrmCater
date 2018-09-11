@@ -32,6 +32,7 @@ namespace Bll
             var returnResult=managerInfoDal.GetList(mi);
             if(returnResult.Count>0)
             {
+                mi.MType = returnResult[0].MType;
                 return true;
             }
             return false;

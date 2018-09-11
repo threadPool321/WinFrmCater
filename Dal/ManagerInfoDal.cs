@@ -20,17 +20,18 @@ namespace Dal
         {
             //构建集合对象
             List<ManagerInfo> list = new List<ManagerInfo>();
-            SQLiteParameter[] para = new SQLiteParameter[2];
+            //SQLiteParameter[] para = new SQLiteParameter[2]; 数组（固定长度）和集合（不固定长度）
+            List<SQLiteParameter> listpa = new List<SQLiteParameter>();
             //查询sql 语句
             string str = "select * from managerInfo";
             if(mi!=null)
             {
                 str += " where Mname=@name and Mpwd=@pwd";
-                para[0] = new SQLiteParameter("@name", mi.MName);
-                para[1] = new SQLiteParameter("@pwd",Common.MD5Helper.GetMD5Str(mi.MPwd));
+                listpa.Add(new SQLiteParameter("@name", mi.MName));
+                listpa.Add(new SQLiteParameter("@pwd",Common.MD5Helper.GetMD5Str(mi.MPwd)));
             }
             //执行查询，获取数据
-            DataTable table = SqliteHelper.GetList(str,para);
+            DataTable table = SqliteHelper.GetList(str, listpa.ToArray());
            
             //遍历数据表，将数据转存到集合中
             foreach (DataRow item in table.Rows)

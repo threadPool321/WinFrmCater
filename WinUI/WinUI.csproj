@@ -70,6 +70,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MemberTypeInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MemberTypeInfo.Designer.cs">
+      <DependentUpon>MemberTypeInfo.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -92,6 +98,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="MemberTypeInfo.resx">
+      <DependentUpon>MemberTypeInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="db\ItcastCater.db" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
