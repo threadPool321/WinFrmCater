@@ -46,14 +46,17 @@ namespace WinUI
         private void menuManager_Click(object sender, EventArgs e)
         {
             //显示出管理员列表
-            ManagerInfoList mif = new ManagerInfoList();
+            ManagerInfoList mif = FrmSingletonFactory.CreateInstance();
             mif.Show();
+            mif.Activate();
         }
         //会员类型表
         private void menuMember_Click(object sender, EventArgs e)
         {
-            MemberTypeInfo mti = new MemberTypeInfo();
+            MemberInfoList mti = FrmSingletonFactory.CreateMemberInstance();
             mti.Show();
+            mti.Activate();
+           // mti.Focus();
         }
     }
 }
