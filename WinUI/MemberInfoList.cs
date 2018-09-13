@@ -139,6 +139,8 @@ namespace WinUI
         private void btnAddType_Click(object sender, EventArgs e)
         {
             MemberTypeInfo info = FrmSingletonFactory.CreateMemberTypeInstance();
+            //这里显示的时候要把修改过的值重新给加载进来
+            info._ManagerTypeActionEvent += ReLoadData;
             info.Show();
             info.Focus();
         }
@@ -151,6 +153,12 @@ namespace WinUI
         private void txtPhoneSearch_Leave(object sender, EventArgs e)
         {
             LoadData();
+        }
+        //加完后，就是重新加载数据
+        private void ReLoadData()
+        {
+            LoadData();
+            GetDDl();
         }
     }
     #endregion

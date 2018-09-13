@@ -17,6 +17,7 @@ namespace WinUI
             InitializeComponent();
         }
         Bll.MemberTypeInfoBll bll = new Bll.MemberTypeInfoBll();
+        public event Action _ManagerTypeActionEvent;
         private void MemberTypeInfo_Load(object sender, EventArgs e)
         {
             LoadData();
@@ -42,6 +43,7 @@ namespace WinUI
                 {
                     btnCancel_Click(null, null);
                     LoadData();
+                    _ManagerTypeActionEvent();
                 }
                 else
                 {
@@ -57,6 +59,7 @@ namespace WinUI
                 {
                     btnSave.Text = "添加";
                     LoadData();
+                    _ManagerTypeActionEvent();
                 }
                 else
                 {
@@ -86,6 +89,7 @@ namespace WinUI
                     if(bll.Delete(id))
                     {
                         LoadData();
+                        _ManagerTypeActionEvent();
                     }
                 }
             }
