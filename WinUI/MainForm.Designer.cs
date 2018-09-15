@@ -81,6 +81,7 @@
             this.menudish.Size = new System.Drawing.Size(76, 85);
             this.menudish.Text = "dis";
             this.menudish.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.menudish.Click += new System.EventHandler(this.menudish_Click);
             // 
             // menuTable
             // 

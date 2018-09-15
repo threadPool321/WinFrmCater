@@ -11,6 +11,16 @@ namespace WinUI
         private static WinUI.MemberTypeInfo memberTypeObj = null;
         private static WinUI.MemberInfoList memberInfoOjb = null;
         private static WinUI.ManagerInfoList managetListObj = null;
+        private static WinUI.DishInfo dishObj = null;
+        public static DishInfo CreateInstacne()
+        {
+            if(dishObj==null||dishObj.IsDisposed)
+            {
+                dishObj = new DishInfo();
+            }
+
+            return dishObj;
+        }
         public static ManagerInfoList CreateInstance()
         {
             if(managetListObj==null||managetListObj.IsDisposed)

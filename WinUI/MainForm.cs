@@ -58,5 +58,14 @@ namespace WinUI
             mti.Activate();
            // mti.Focus();
         }
+        //菜单
+        private void menudish_Click(object sender, EventArgs e)
+        {
+            //使用单例模式
+            DishInfo dish = FrmSingletonFactory.CreateInstacne();
+
+            dish.Show();
+            dish.Activate();
+        }
     }
 }

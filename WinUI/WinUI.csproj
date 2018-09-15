@@ -44,6 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DishInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DishInfo.Designer.cs">
+      <DependentUpon>DishInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DishTypeInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DishTypeInfo.Designer.cs">
+      <DependentUpon>DishTypeInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +95,12 @@
     <Compile Include="MemberTypeInfo.Designer.cs">
       <DependentUpon>MemberTypeInfo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DishInfo.resx">
+      <DependentUpon>DishInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DishTypeInfo.resx">
+      <DependentUpon>DishTypeInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
