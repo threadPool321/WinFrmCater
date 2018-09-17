@@ -67,5 +67,12 @@ namespace WinUI
             dish.Show();
             dish.Activate();
         }
+
+        private void menuTable_Click(object sender, EventArgs e)
+        {
+            TableInfoFrm table = FrmSingletonFactory.CreateInstace();
+            table.Show();
+            table.Activate();
+        }
     }
 }

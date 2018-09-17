@@ -12,9 +12,19 @@ namespace WinUI
 {
     public partial class HillInfoFrm : Form
     {
-        public HillInfoFrm()
+        private HillInfoFrm()
         {
             InitializeComponent();
+        }
+        public event Action HillInfoEvent;
+        public static HillInfoFrm firInstance = null;
+        public static HillInfoFrm CreateInstacne()
+        {
+            if(firInstance==null||firInstance.IsDisposed)
+            {
+                firInstance = new HillInfoFrm();
+            }
+            return firInstance;
         }
         #region 自定义方法
         Bll.HillInfoBll bll = new Bll.HillInfoBll();
@@ -46,6 +56,7 @@ namespace WinUI
                 {
                     btnCancel_Click(null, null); //把事件当作一个方法使用
                     LoadData();
+                    HillInfoEvent();
                 }
             }
             else
@@ -55,6 +66,7 @@ namespace WinUI
                 {
                     btnCancel_Click(null,null);
                     LoadData();
+                    HillInfoEvent();
                 }
                 else
                 {
@@ -82,6 +94,7 @@ namespace WinUI
                     if(bll.Delete(Convert.ToInt32(row[0].Cells[0].Value)))
                     {
                         LoadData();
+                        HillInfoEvent();
                     }
                     else
                     {

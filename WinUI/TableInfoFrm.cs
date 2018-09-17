@@ -17,6 +17,7 @@ namespace WinUI
             InitializeComponent();
         }
         #region 自定义方法
+        
         private Bll.TableInfoBll bll = new Bll.TableInfoBll();
         private void LoadData()
         {
@@ -49,6 +50,11 @@ namespace WinUI
             ddlFreeSearch.DisplayMember = "StateName";
             ddlFreeSearch.ValueMember = "StateId";
             ddlFreeSearch.DataSource = listTable;
+
+            //添加时的
+            ddlHallAdd.DisplayMember = "Htitle";
+            ddlHallAdd.ValueMember = "Hid";
+            ddlHallAdd.DataSource= hillBll.GetDishInfos();
         }
         #endregion
 
@@ -88,6 +94,99 @@ namespace WinUI
             ddlHallSearch.SelectedIndex = 0;
             ddlFreeSearch.SelectedIndex = 0;
             LoadData(); //直接是加载全部
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            Model.TableInfo table = new Model.TableInfo();
+            table.TTitle = txtTitle.Text;
+            table.THallId = Convert.ToInt32(ddlHallAdd.SelectedValue);
+            table.TIsFree = rbFree.Checked ? 1 : rbUnFree.Checked?0:1;
+            
+            if(btnSave.Text.Equals("添加"))
+            {
+                if(bll.Add(table))
+                {
+                    btnCancel_Click(null,null);
+                    LoadData();
+                }
+            }
+            else
+            {
+                //执行更新
+                table.TId = Convert.ToInt32(txtId.Text);
+                if(bll.Update(table))
+                {
+                    btnCancel_Click(null, null);
+                    LoadData();
+                }
+                else
+                {
+                    MessageBox.Show("修改失败");
+                }
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            txtId.Text = "添加时无编号";
+            txtTitle.Text = "";
+            btnSave.Text = "添加";
+            rbFree.Checked = true;
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            var row = dgvList.SelectedRows;
+            if(row.Count>0)
+            {
+                DialogResult result = MessageBox.Show("确定要删除？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if(result==DialogResult.OK)
+                {
+                    if(bll.Delete(Convert.ToInt32(row[0].Cells[0].Value)))
+                    {
+                        LoadData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("删除失败");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("选中要删除行");
+            }
+        }
+        //双击进行修改
+        private void dgvList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var row = dgvList.Rows[e.RowIndex];
+            txtId.Text=row.Cells[0].Value.ToString();
+            txtTitle.Text = row.Cells[1].Value.ToString();
+            ddlHallAdd.Text = row.Cells[2].Value.ToString();
+            if(row.Cells[3].FormattedValue=="是")
+            {
+                rbFree.Checked = true;
+            }
+            else
+            {
+                rbUnFree.Checked = true;
+            }
+            btnSave.Text = "修改";
+        }
+        //听包管理
+        private void btnAddHall_Click(object sender, EventArgs e)
+        {
+            HillInfoFrm hill = HillInfoFrm.CreateInstacne();
+            hill.HillInfoEvent += UpdataTable;
+            hill.Show();
+            hill.Activate();
+        }
+        public void UpdataTable()
+        {
+            LoadData();
+            LoadSearch();
         }
     }
 }

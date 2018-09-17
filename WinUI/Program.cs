@@ -16,7 +16,7 @@ namespace WinUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TableInfoFrm());
+            Application.Run(new MainForm());
         }
     }
 }

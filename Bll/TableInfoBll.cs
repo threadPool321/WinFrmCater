@@ -13,5 +13,22 @@ namespace Bll
         {
             return dal.GetTableInfos(table);
         }
+        public bool Add(Model.TableInfo table)
+        {
+
+
+            return dal.Add(table) > 0;
+
         }
+        public bool Update(Model.TableInfo table)
+        {
+
+            return dal.Update(table)>0;
+        }
+        public bool Delete(int id)
+        {
+
+            return dal.Delete(id)>0;
+        }
+    }
 }
