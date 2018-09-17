@@ -46,11 +46,13 @@
   <ItemGroup>
     <Compile Include="DishInfoDal.cs" />
     <Compile Include="DishTypeDal.cs" />
+    <Compile Include="HillInfoDal.cs" />
     <Compile Include="ManagerInfoDal.cs" />
     <Compile Include="MemberDal.cs" />
     <Compile Include="MemberInfoDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqliteHelper.cs" />
+    <Compile Include="TableInfoDal.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

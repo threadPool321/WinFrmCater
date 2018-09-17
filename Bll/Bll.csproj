@@ -42,10 +42,12 @@
   <ItemGroup>
     <Compile Include="DishInfoBll.cs" />
     <Compile Include="DishTypeBll.cs" />
+    <Compile Include="HillInfoBll.cs" />
     <Compile Include="ManagerInfoBll.cs" />
     <Compile Include="MemberBll.cs" />
     <Compile Include="MemberTypeInfoBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TableInfoBll.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

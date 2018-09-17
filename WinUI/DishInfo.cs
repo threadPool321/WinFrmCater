@@ -175,6 +175,11 @@ namespace WinUI
         {
             LoadData();
             LoadDishType();
+            ////使用npoi操作excel是需要用到的文件流，注意的是文件流一定要释放，因为他不是在托管资源里面
+            ////导出excel
+            //System.IO.FileStream file = new System.IO.FileStream(@"路径",System.IO.FileMode.Create,System.IO.FileAccess.Write);
+            ////导入Excel
+            //System.IO.FileStream fileStream = new System.IO.FileStream(@"路径", System.IO.FileMode.Open, System.IO.FileAccess.Read);
         }
     }
 }

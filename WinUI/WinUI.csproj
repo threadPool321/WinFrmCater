@@ -63,6 +63,12 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSingletonFactory.cs" />
+    <Compile Include="HillInfoFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HillInfoFrm.Designer.cs">
+      <DependentUpon>HillInfoFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,12 @@
     <Compile Include="MemberTypeInfo.Designer.cs">
       <DependentUpon>MemberTypeInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="TableInfoFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TableInfoFrm.Designer.cs">
+      <DependentUpon>TableInfoFrm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="DishInfo.resx">
       <DependentUpon>DishInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HillInfoFrm.resx">
+      <DependentUpon>HillInfoFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -128,6 +143,9 @@
     </Compile>
     <EmbeddedResource Include="MemberTypeInfo.resx">
       <DependentUpon>MemberTypeInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableInfoFrm.resx">
+      <DependentUpon>TableInfoFrm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="db\ItcastCater.db" />
     <None Include="Properties\Settings.settings">

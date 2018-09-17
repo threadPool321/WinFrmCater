@@ -42,10 +42,13 @@
   <ItemGroup>
     <Compile Include="DishInfo.cs" />
     <Compile Include="DishTypeModel.cs" />
+    <Compile Include="HallInfo.cs" />
     <Compile Include="ManagerInfo.cs" />
     <Compile Include="MemberInfo.cs" />
     <Compile Include="MemberTypeInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TableInfo.cs" />
+    <Compile Include="TableState.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
