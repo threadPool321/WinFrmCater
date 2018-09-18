@@ -37,7 +37,9 @@ namespace WinUI
             //加载标签页
             LoadHallTab();
         }
-
+        /// <summary>
+        /// 动态的添加tabPage,一个tabControl包含多个tabPage
+        /// </summary>
         private void LoadHallTab()
         {
             Bll.HillInfoBll bll = new Bll.HillInfoBll();
@@ -45,7 +47,7 @@ namespace WinUI
             foreach (var item in items)
             {
                 TabPage tabPage = new TabPage(item.HTitle);
-                tabPage.Tag = item.Hid;
+                tabPage.Tag = item.Hid;             //拿到这个听包到时查找餐桌
                 tabHill.TabPages.Add(tabPage);
             }
             tabControl1_SelectedIndexChanged(null,null);
@@ -99,8 +101,8 @@ namespace WinUI
             //查出所有餐桌的信息
             Bll.TableInfoBll bll = new Bll.TableInfoBll();
             Model.TableInfo table = new Model.TableInfo();
-            table.THallId = Convert.ToInt32(tabHill.SelectedTab.Tag);
-            table.TIsFree = -1;
+            table.THallId = Convert.ToInt32(tabHill.SelectedTab.Tag);   //厅包的条件
+            table.TIsFree = -1;                                         //得到是否空闲-1表示全部
             var list = bll.GetTableInfos(table);
 
 
@@ -110,7 +112,6 @@ namespace WinUI
             listView.LargeImageList = imageList1;
             listView.Dock = DockStyle.Fill;
             listView.MultiSelect = false; //不能进行多选
-
             foreach (var item in list)
             {
                 ListViewItem lItem = new ListViewItem(item.TTitle, item.TIsFree);
@@ -122,3 +123,4 @@ namespace WinUI
         }
     }
 }
+//开单的餐桌，我们双击可以进行加菜操作

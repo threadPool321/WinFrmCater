@@ -1,0 +1,51 @@
+分层的好处：分工明确，更强的代码的可重用性；
+工厂方式，就是不允许直接创建对象，而是通过我给你制定的方法进行创建对象
+DataGridView
+单元格格式化事件gvList_CellFormatting
+取消自动添加列属性：gvList.AutoGenerateColumns = false;  //取消自动生成列
+
+
+gvList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+selectionModel=FullRowSelected属性表示选中一个单元格就能选中一行
+单元格不能够多选
+MultiSelect=false;
+
+dataGridview 显示数据库为null值该怎么显示
+
+Out ref
+作为参数返回值的时候，为什么用out,ref?
+使用out,ref的目的就是为了，有值可以从方法体中给我们返回回来（out ref 修饰的参数表示可以从方法体中给我们返回回来，但是前提是out们修饰的变量都是值类型的），out ref值类型的变量要用到地址
+
+
+tabControl tabPage  listView listViewItem
+
+//tabcontrol，移除选项卡手动添加标签
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //操作过程:选择一个tabPage,然后根据当前选中的TabPage存储的厅包编号,查找里面的餐桌,然后创建ListView,加入所有的餐桌,
+            //再将ListView加到当前选中的TagPage
+            //1\获取选中的tabPage
+            var tabPage = tabHill.SelectedTab;
+            //查出所有餐桌的信息
+            Bll.TableInfoBll bll = new Bll.TableInfoBll();
+            Model.TableInfo table = new Model.TableInfo();
+            table.THallId = Convert.ToInt32(tabHill.SelectedTab.Tag);   //厅包的条件
+            table.TIsFree = -1;                                         //得到是否空闲-1表示全部
+            var list = bll.GetTableInfos(table);
+
+
+            //把这个集合放到listview中
+            //构建listView
+            ListView listView = new ListView();
+            listView.LargeImageList = imageList1;
+            listView.Dock = DockStyle.Fill;
+            listView.MultiSelect = false; //不能进行多选
+            foreach (var item in list)
+            {
+                ListViewItem lItem = new ListViewItem(item.TTitle, item.TIsFree);
+                listView.Items.Add(lItem);
+            }
+           
+            //4\将ListView加入当前选中的TabPage
+            tabPage.Controls.Add(listView);
+        }
