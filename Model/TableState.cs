@@ -11,8 +11,7 @@ namespace Model
         public TableState(string index,string name)
         {
             StateId = index;
-            StateName = name;
-            
+            StateName = name;     
         }
 
         public string StateId { get; set; }

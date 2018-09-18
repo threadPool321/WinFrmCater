@@ -34,8 +34,23 @@ namespace WinUI
                 //表示是店员的权限
                 menuManager.Visible = false;
             }
-
+            //加载标签页
+            LoadHallTab();
         }
+
+        private void LoadHallTab()
+        {
+            Bll.HillInfoBll bll = new Bll.HillInfoBll();
+            var items = bll.GetDishInfos();
+            foreach (var item in items)
+            {
+                TabPage tabPage = new TabPage(item.HTitle);
+                tabPage.Tag = item.Hid;
+                tabHill.TabPages.Add(tabPage);
+            }
+            tabControl1_SelectedIndexChanged(null,null);
+        }
+
         //退出
         private void menuQuit_Click(object sender, EventArgs e)
         {
@@ -73,6 +88,37 @@ namespace WinUI
             TableInfoFrm table = FrmSingletonFactory.CreateInstace();
             table.Show();
             table.Activate();
+        }
+        //tabcontrol，移除选项卡手动添加标签
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //操作过程:选择一个tabPage,然后根据当前选中的TabPage存储的厅包编号,查找里面的餐桌,然后创建ListView,加入所有的餐桌,
+            //再将ListView加到当前选中的TagPage
+            //1\获取选中的tabPage
+            var tabPage = tabHill.SelectedTab;
+            //查出所有餐桌的信息
+            Bll.TableInfoBll bll = new Bll.TableInfoBll();
+            Model.TableInfo table = new Model.TableInfo();
+            table.THallId = Convert.ToInt32(tabHill.SelectedTab.Tag);
+            table.TIsFree = -1;
+            var list = bll.GetTableInfos(table);
+
+
+            //把这个集合放到listview中
+            //构建listView
+            ListView listView = new ListView();
+            listView.LargeImageList = imageList1;
+            listView.Dock = DockStyle.Fill;
+            listView.MultiSelect = false; //不能进行多选
+
+            foreach (var item in list)
+            {
+                ListViewItem lItem = new ListViewItem(item.TTitle, item.TIsFree);
+                listView.Items.Add(lItem);
+            }
+           
+            //4\将ListView加入当前选中的TabPage
+            tabPage.Controls.Add(listView);
         }
     }
 }
