@@ -190,6 +190,7 @@
     <Content Include="images\menuOrder.png" />
     <Content Include="images\menuQuit.png" />
     <Content Include="images\menuTable.png" />
+    <Content Include="material\新建文本文档.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

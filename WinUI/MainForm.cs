@@ -112,6 +112,9 @@ namespace WinUI
             listView.LargeImageList = imageList1;
             listView.Dock = DockStyle.Fill;
             listView.MultiSelect = false; //不能进行多选
+            //进行双击表示进行开单状态，或者是进行在点菜状态
+            listView.MouseDoubleClick += ListView_MouseDoubleClick;
+
             foreach (var item in list)
             {
                 ListViewItem lItem = new ListViewItem(item.TTitle, item.TIsFree);
@@ -120,6 +123,13 @@ namespace WinUI
            
             //4\将ListView加入当前选中的TabPage
             tabPage.Controls.Add(listView);
+        }
+        //双击餐桌是进行开单操作
+        private void ListView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            //拿到这个listview,然后拿到这个listviewItem
+            ListView listview =sender as ListView;
+
         }
     }
 }

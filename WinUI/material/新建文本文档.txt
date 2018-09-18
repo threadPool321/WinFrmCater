@@ -49,3 +49,9 @@ tabControl tabPage  listView listViewItem
             //4\将ListView加入当前选中的TabPage
             tabPage.Controls.Add(listView);
         }
+
+
+5.2在mianfrom中加载完毕厅包中的table后开始，双击table可以进行点菜功能
+
+我们在给一个容器里包含很多像添加事件是加不上去的，所以我们必须是要给这个很多项的夫容器（父级容器）添加事件
+业务处理，如果当前的餐桌是属于空闲状态，那么就进行开单操作，进行两步操作，一个给orderInfo新增一条数据，数据有选择性的，一个是给餐桌表修改是否空闲的状态
