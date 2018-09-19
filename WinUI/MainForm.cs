@@ -28,8 +28,8 @@ namespace WinUI
         private void MainForm_Load(object sender, EventArgs e)
         {
             //窗体加载时确定订单
-          
-            if(this.Tag!= null && this.Tag.ToString() == "0")
+
+            if (this.Tag != null && this.Tag.ToString() == "0")
             {
                 //表示是店员的权限
                 menuManager.Visible = false;
@@ -50,7 +50,7 @@ namespace WinUI
                 tabPage.Tag = item.Hid;             //拿到这个听包到时查找餐桌
                 tabHill.TabPages.Add(tabPage);
             }
-            tabControl1_SelectedIndexChanged(null,null);
+            tabControl1_SelectedIndexChanged(null, null);
         }
 
         //退出
@@ -73,7 +73,7 @@ namespace WinUI
             MemberInfoList mti = FrmSingletonFactory.CreateMemberInstance();
             mti.Show();
             mti.Activate();
-           // mti.Focus();
+            // mti.Focus();
         }
         //菜单
         private void menudish_Click(object sender, EventArgs e)
@@ -118,18 +118,35 @@ namespace WinUI
             foreach (var item in list)
             {
                 ListViewItem lItem = new ListViewItem(item.TTitle, item.TIsFree);
+                lItem.Tag = item.TId;
                 listView.Items.Add(lItem);
             }
-           
+
             //4\将ListView加入当前选中的TabPage
             tabPage.Controls.Add(listView);
         }
+        Bll.OrderInfoBll bll = new Bll.OrderInfoBll();
         //双击餐桌是进行开单操作
         private void ListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             //拿到这个listview,然后拿到这个listviewItem
-            ListView listview =sender as ListView;
-
+            ListView listview = sender as ListView;
+            var viewItem = listview.SelectedItems[0];
+            var tableId = viewItem.Tag;
+            //双击这个图标就是意味着已经开始开单了（空闲状态），如果非空闲的话那么就是可以在继续进行点菜
+            if(viewItem.ImageIndex==0)
+            {
+                if (bll.InsertOrder(Convert.ToInt32(tableId)))
+                {
+                    //开单成功后就可以修改图片
+                    viewItem.ImageIndex = 1;  //修改这个图片                    
+                    //弹出订单窗体
+                }
+            }
+                //然后我就是直接定性加菜操作
+                OrderInfoList orderInfoList = new OrderInfoList();
+                orderInfoList.Show();
+            
         }
     }
 }

@@ -93,6 +93,12 @@
     <Compile Include="MemberInfoList.Designer.cs">
       <DependentUpon>MemberInfoList.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrderInfoList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderInfoList.Designer.cs">
+      <DependentUpon>OrderInfoList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MemberTypeInfo.cs">
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MemberInfoList.resx">
       <DependentUpon>MemberInfoList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderInfoList.resx">
+      <DependentUpon>OrderInfoList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
