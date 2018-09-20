@@ -65,5 +65,16 @@ namespace Dal
                 return execResult;
             }
         }
+        public static object ExecuteScaler(string sql,params SQLiteParameter[] parm)
+        {
+            using(SQLiteConnection conn=new SQLiteConnection(_SqlConn))
+            {
+                SQLiteCommand com = new SQLiteCommand(sql,conn);
+                com.Parameters.AddRange(parm);
+                conn.Open();
+                object obj = com.ExecuteScalar();
+                return obj;
+            }
+        }
     }
 }

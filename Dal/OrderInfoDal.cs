@@ -19,5 +19,11 @@ namespace Dal
             listPar.Add(new System.Data.SQLite.SQLiteParameter("@id",id));
             return SqliteHelper.ExecuteNonQuery(sql,listPar.ToArray());
         }
+        public int GetOrderIdByTid(int id)
+        {
+            string sql = "select OId from OrderInfo where TableId=@id ";
+            System.Data.SQLite.SQLiteParameter par = new System.Data.SQLite.SQLiteParameter("@id",id);
+            return Convert.ToInt32(SqliteHelper.ExecuteScaler(sql, par));
+        }
     }
 }

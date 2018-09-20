@@ -13,5 +13,9 @@ namespace Bll
         {
             return dal.InsertOrderInfo(id)>0;
         }
+        public int GetOrderIdByTid(int id)
+        {
+            return dal.GetOrderIdByTid(id);
+        }
     }
 }

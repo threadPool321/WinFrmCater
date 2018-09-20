@@ -23,7 +23,11 @@ namespace Dal
                 sql += "  and di.DtypeId like @id";
                 listPara.Add(new System.Data.SQLite.SQLiteParameter("@id","%"+obj.DTypeId+"%"));            
             }
-
+            if(!string.IsNullOrEmpty(obj.DChar))
+            {
+                sql += " and di.Dchar like @char";
+                listPara.Add(new System.Data.SQLite.SQLiteParameter("@char","%"+obj.DChar+"%"));
+            }
             DataTable table = SqliteHelper.GetList(sql,listPara.ToArray());
             List<Model.DishInfo> dish = new List<Model.DishInfo>(); 
             foreach (DataRow item in table.Rows)
