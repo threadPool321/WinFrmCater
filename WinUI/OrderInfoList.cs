@@ -16,5 +16,14 @@ namespace WinUI
         {
             InitializeComponent();
         }
+
+        private void OrderInfoList_Load(object sender, EventArgs e)
+        {
+            //获取传递过来的订单编号
+
+            //根据餐桌编号，获取订单编号
+
+
+        }
     }
 }

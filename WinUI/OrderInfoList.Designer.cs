@@ -62,9 +62,11 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtTitle);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 10);
+            this.groupBox1.Location = new System.Drawing.Point(16, 12);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(473, 482);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(631, 602);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "菜单";
@@ -80,13 +82,14 @@
             this.Column8,
             this.Column3,
             this.Column4});
-            this.dgvAllDish.Location = new System.Drawing.Point(6, 41);
+            this.dgvAllDish.Location = new System.Drawing.Point(8, 51);
+            this.dgvAllDish.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvAllDish.MultiSelect = false;
             this.dgvAllDish.Name = "dgvAllDish";
             this.dgvAllDish.ReadOnly = true;
             this.dgvAllDish.RowTemplate.Height = 23;
             this.dgvAllDish.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAllDish.Size = new System.Drawing.Size(455, 435);
+            this.dgvAllDish.Size = new System.Drawing.Size(607, 544);
             this.dgvAllDish.TabIndex = 4;
             // 
             // Column1
@@ -128,33 +131,37 @@
             // 
             this.ddlType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddlType.FormattingEnabled = true;
-            this.ddlType.Location = new System.Drawing.Point(321, 18);
+            this.ddlType.Location = new System.Drawing.Point(428, 22);
+            this.ddlType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ddlType.Name = "ddlType";
-            this.ddlType.Size = new System.Drawing.Size(140, 20);
+            this.ddlType.Size = new System.Drawing.Size(185, 23);
             this.ddlType.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(250, 21);
+            this.label2.Location = new System.Drawing.Point(333, 26);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 12);
+            this.label2.Size = new System.Drawing.Size(82, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "菜品分类：";
             // 
             // txtTitle
             // 
-            this.txtTitle.Location = new System.Drawing.Point(81, 14);
+            this.txtTitle.Location = new System.Drawing.Point(108, 18);
+            this.txtTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(146, 21);
+            this.txtTitle.Size = new System.Drawing.Size(193, 25);
             this.txtTitle.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 21);
+            this.label1.Location = new System.Drawing.Point(9, 26);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 12);
+            this.label1.Size = new System.Drawing.Size(97, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "菜名首字母：";
             // 
@@ -162,18 +169,20 @@
             // 
             this.lblMoney.AutoSize = true;
             this.lblMoney.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblMoney.Location = new System.Drawing.Point(89, 21);
+            this.lblMoney.Location = new System.Drawing.Point(119, 26);
+            this.lblMoney.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMoney.Name = "lblMoney";
-            this.lblMoney.Size = new System.Drawing.Size(11, 12);
+            this.lblMoney.Size = new System.Drawing.Size(15, 15);
             this.lblMoney.TabIndex = 7;
             this.lblMoney.Text = "0";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 21);
+            this.label3.Location = new System.Drawing.Point(8, 26);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 12);
+            this.label3.Size = new System.Drawing.Size(97, 15);
             this.label3.TabIndex = 6;
             this.label3.Text = "消费总计：￥";
             // 
@@ -197,27 +206,31 @@
             this.groupBox2.Controls.Add(this.btnOrder);
             this.groupBox2.Controls.Add(this.btnRemove);
             this.groupBox2.Controls.Add(this.dgvOrderDetail);
-            this.groupBox2.Location = new System.Drawing.Point(491, 10);
+            this.groupBox2.Location = new System.Drawing.Point(655, 12);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(426, 482);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Size = new System.Drawing.Size(568, 602);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "已点菜品";
             // 
             // btnOrder
             // 
-            this.btnOrder.Location = new System.Drawing.Point(331, 13);
+            this.btnOrder.Location = new System.Drawing.Point(441, 16);
+            this.btnOrder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOrder.Name = "btnOrder";
-            this.btnOrder.Size = new System.Drawing.Size(85, 23);
+            this.btnOrder.Size = new System.Drawing.Size(113, 29);
             this.btnOrder.TabIndex = 5;
             this.btnOrder.Text = "下单";
             this.btnOrder.UseVisualStyleBackColor = true;
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(208, 13);
+            this.btnRemove.Location = new System.Drawing.Point(277, 16);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(108, 23);
+            this.btnRemove.Size = new System.Drawing.Size(144, 29);
             this.btnRemove.TabIndex = 4;
             this.btnRemove.Text = "删除选中项";
             this.btnRemove.UseVisualStyleBackColor = true;
@@ -232,10 +245,11 @@
             this.Column6,
             this.Column7,
             this.Column9});
-            this.dgvOrderDetail.Location = new System.Drawing.Point(6, 41);
+            this.dgvOrderDetail.Location = new System.Drawing.Point(8, 51);
+            this.dgvOrderDetail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvOrderDetail.Name = "dgvOrderDetail";
             this.dgvOrderDetail.RowTemplate.Height = 23;
-            this.dgvOrderDetail.Size = new System.Drawing.Size(410, 435);
+            this.dgvOrderDetail.Size = new System.Drawing.Size(547, 544);
             this.dgvOrderDetail.TabIndex = 0;
             // 
             // Column5
@@ -254,13 +268,15 @@
             // 
             // OrderInfoList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(932, 504);
+            this.ClientSize = new System.Drawing.Size(1243, 630);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "OrderInfoList";
             this.Text = "订单";
+            this.Load += new System.EventHandler(this.OrderInfoList_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllDish)).EndInit();
