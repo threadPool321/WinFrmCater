@@ -100,10 +100,11 @@ namespace WinUI
             var tabPage = tabHill.SelectedTab;
             //查出所有餐桌的信息
             Bll.TableInfoBll bll = new Bll.TableInfoBll();
+
             Model.TableInfo table = new Model.TableInfo();
             table.THallId = Convert.ToInt32(tabHill.SelectedTab.Tag);   //厅包的条件
             table.TIsFree = -1;                                         //得到是否空闲-1表示全部
-            var list = bll.GetTableInfos(table);
+            var list = bll.GetTableInfos(table);                        //找到所有的厅下面的桌子
 
 
             //把这个集合放到listview中
@@ -117,24 +118,25 @@ namespace WinUI
 
             foreach (var item in list)
             {
-                ListViewItem lItem = new ListViewItem(item.TTitle, item.TIsFree);
+                ListViewItem lItem = new ListViewItem(item.TTitle, item.TIsFree==1?0:1);
                 lItem.Tag = item.TId;
                 listView.Items.Add(lItem);
             }
-
             //4\将ListView加入当前选中的TabPage
             tabPage.Controls.Add(listView);
         }
+
         Bll.OrderInfoBll bll = new Bll.OrderInfoBll();
         //双击餐桌是进行开单操作
         private void ListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             //拿到这个listview,然后拿到这个listviewItem
             ListView listview = sender as ListView;
-            var viewItem = listview.SelectedItems[0];
+            var viewItem = listview.SelectedItems[0];  //表示就是选中的那个开单项
+
             var tableId = viewItem.Tag;
             //双击这个图标就是意味着已经开始开单了（空闲状态），如果非空闲的话那么就是可以在继续进行点菜
-            if(viewItem.ImageIndex==0)
+            if (viewItem.ImageIndex == 0)
             {
                 if (bll.InsertOrder(Convert.ToInt32(tableId)))
                 {
@@ -143,10 +145,11 @@ namespace WinUI
                     //弹出订单窗体
                 }
             }
-                //然后我就是直接定性加菜操作
-                OrderInfoList orderInfoList = new OrderInfoList();
-                orderInfoList.Show();
-            
+            //然后我就是直接定性加菜操作
+            OrderInfoList orderInfoList = new OrderInfoList();
+            orderInfoList.Tag = tableId;
+            orderInfoList.Show();
+
         }
     }
 }
