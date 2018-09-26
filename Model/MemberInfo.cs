@@ -15,5 +15,8 @@ namespace Model
         public decimal MMoney { get; set; }
         public bool MIsDelete { get; set; }
         public string TypeTitle { get; set; }
+        //账户余额，折扣
+        public decimal Discount { get; set; }
+     
     }
 }

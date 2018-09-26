@@ -14,7 +14,7 @@ namespace Dal
         /// <returns></returns>
         public List<Model.MemberInfo> GetList(Model.MemberInfo manager)
         {
-            string sql = "SELECT mi.*,mti.MTitle FROM MemberInfo mi inner JOIN MemberTypeInfo mti ON mi.MTypeId=mti.MId where mi.MIsDelete=0 ";
+            string sql = "SELECT mi.*,mti.MTitle, mti.MDiscount FROM MemberInfo mi inner JOIN MemberTypeInfo mti ON mi.MTypeId=mti.MId where mi.MIsDelete=0 ";
             List<System.Data.SQLite.SQLiteParameter> para = new List<System.Data.SQLite.SQLiteParameter>();
             if(!string.IsNullOrEmpty(manager.MName))
             {
@@ -26,6 +26,11 @@ namespace Dal
                 sql += " and mi.MPhone like @phone ";
                 para.Add(new System.Data.SQLite.SQLiteParameter("@phone","%"+manager.MPhone+"%"));
             }
+            if(manager.MId>0)  //如果我们不填写那么值类型默认的就是0
+            {
+                sql += "and mi.Mid=@mid ";
+                para.Add(new System.Data.SQLite.SQLiteParameter("@mid",manager.MId));
+            }
             System.Data.DataTable table = SqliteHelper.GetList(sql,para.ToArray());
             List<Model.MemberInfo> list = new List<Model.MemberInfo>();
             foreach (System.Data.DataRow item in table.Rows)
@@ -34,9 +39,11 @@ namespace Dal
                 {
                     MId = Convert.ToInt32(item["MId"]),
                     MName = Convert.ToString(item["MName"]),
-                    TypeTitle = Convert.ToString(item["MTitle"]),
+                    TypeTitle = Convert.ToString(item["MTitle"]),   //会员类型
                     MMoney = Convert.ToDecimal(item["MMoney"]),
-                    MPhone = Convert.ToString(item["MPhone"])
+                    MPhone = Convert.ToString(item["MPhone"]),
+                    Discount=Convert.ToDecimal(item["MDiscount"]) //折扣
+
                 });
             }
             return list;

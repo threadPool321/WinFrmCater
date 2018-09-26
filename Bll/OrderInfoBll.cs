@@ -17,7 +17,11 @@ namespace Bll
         {
             return dal.GetOrderIdByTid(id);
         }
-        public bool OrderDish(int orderId, int dishId)
+        public decimal GetOrderMoneyByTid(int id)
+        {
+            return dal.GetOrderMoneyByTid(id);
+        }
+            public bool OrderDish(int orderId, int dishId)
         {
             return dal.OrderDish(orderId, dishId) > 0;
         }

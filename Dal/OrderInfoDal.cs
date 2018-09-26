@@ -27,6 +27,12 @@ namespace Dal
             System.Data.SQLite.SQLiteParameter par = new System.Data.SQLite.SQLiteParameter("@id",id);
             return Convert.ToInt32(SqliteHelper.ExecuteScaler(sql, par));
         }
+        public decimal GetOrderMoneyByTid(int id)
+        {
+            string sql = "select OMoney from OrderInfo where TableId=@id and isPay=0; ";
+            System.Data.SQLite.SQLiteParameter par = new System.Data.SQLite.SQLiteParameter("@id",id);
+            return Convert.ToDecimal(SqliteHelper.ExecuteScaler(sql,par));
+        }
         //进行点菜功能
         public int OrderDish(int orderId,int dishId)
         {
