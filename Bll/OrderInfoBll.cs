@@ -29,5 +29,13 @@ namespace Bll
         {
             return dal.UpdateCountOrder(orderId, count) > 0;
         }
+        public bool DeleteOrderDetail(int id)
+        {
+            return dal.DeleteOrderDetail(id) > 0;
+        }
+        public bool UpdateMoney(int oid,decimal money)
+        {
+            return dal.UpdateMoney(oid, money) > 0;
+        }
     }
 }

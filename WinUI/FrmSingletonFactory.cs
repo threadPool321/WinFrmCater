@@ -13,6 +13,15 @@ namespace WinUI
         private static WinUI.ManagerInfoList managetListObj = null;
         private static WinUI.DishInfo dishObj = null;
         private static WinUI.TableInfoFrm tableObj = null;
+        private static WinUI.OrderPay orderPay = null;
+        public static OrderPay CreatePay()
+        {
+            if(orderPay==null||orderPay.IsDisposed)
+            {
+                orderPay = new OrderPay();
+            }
+            return orderPay;
+        }
         public static TableInfoFrm CreateInstace()
         {
             if(tableObj==null||tableObj.IsDisposed)

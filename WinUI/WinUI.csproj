@@ -99,6 +99,12 @@
     <Compile Include="OrderInfoList.Designer.cs">
       <DependentUpon>OrderInfoList.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrderPay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderPay.Designer.cs">
+      <DependentUpon>OrderPay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MemberTypeInfo.cs">
@@ -139,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OrderInfoList.resx">
       <DependentUpon>OrderInfoList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderPay.resx">
+      <DependentUpon>OrderPay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

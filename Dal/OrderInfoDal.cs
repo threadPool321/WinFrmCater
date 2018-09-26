@@ -30,10 +30,22 @@ namespace Dal
         //进行点菜功能
         public int OrderDish(int orderId,int dishId)
         {
-            string sql = "insert into OrderDetailInfo(OrderId,Dishid,count) values(@orderId,@dishId,1);";
+            //做一个判断，如果已经存在了那就在原先的基础上在加一
+            string sqlSlected = "select count(*) from OrderDetailInfo where OrderId=@orderId and Dishid=@dishId;";
             List<System.Data.SQLite.SQLiteParameter> listPara = new List<System.Data.SQLite.SQLiteParameter>();
-            listPara.Add(new System.Data.SQLite.SQLiteParameter("@orderId",orderId));
-            listPara.Add(new System.Data.SQLite.SQLiteParameter("@dishId",dishId));
+            listPara.Add(new System.Data.SQLite.SQLiteParameter("@orderId", orderId));
+            listPara.Add(new System.Data.SQLite.SQLiteParameter("@dishId", dishId));
+            int count = Convert.ToInt32(SqliteHelper.ExecuteScaler(sqlSlected, listPara.ToArray()));
+            string sql = "";
+            if(count==0)
+            {
+                sql = "insert into OrderDetailInfo(OrderId,Dishid,count) values(@orderId,@dishId,1);";
+
+            }
+            else
+            {
+                sql = "update OrderDetailInfo set count=count+1 where OrderId=@orderId and Dishid=@dishId;";
+            }
             return SqliteHelper.ExecuteNonQuery(sql,listPara.ToArray());
         }
         public List<Model.OrderDetailInfo> GetOrderDetailInfos(int orderId)
@@ -64,6 +76,23 @@ namespace Dal
             listPar.Add(new System.Data.SQLite.SQLiteParameter("@count",count));
             listPar.Add(new System.Data.SQLite.SQLiteParameter("@id",orderId));
             return SqliteHelper.ExecuteNonQuery(sql, listPar.ToArray());
+        }
+        //删除订单
+        public int DeleteOrderDetail(int id)
+        {
+            string sql = "delete from  OrderDetailInfo where oid=@id";
+            List<System.Data.SQLite.SQLiteParameter> listPar = new List<System.Data.SQLite.SQLiteParameter>();
+            listPar.Add(new System.Data.SQLite.SQLiteParameter("@id",id));
+            return SqliteHelper.ExecuteNonQuery(sql, listPar.ToArray());
+        }
+        //更新价格到订单中
+        public int UpdateMoney(int oId,decimal money)
+        {
+            string sql = "update OrderInfo set oMoney=@money where oid=@id;";
+            List<System.Data.SQLite.SQLiteParameter> listPara = new List<System.Data.SQLite.SQLiteParameter>();
+            listPara.Add(new System.Data.SQLite.SQLiteParameter("@money",money));
+            listPara.Add(new System.Data.SQLite.SQLiteParameter("@id",oId));
+            return SqliteHelper.ExecuteNonQuery(sql,listPara.ToArray());
         }
     }
 }

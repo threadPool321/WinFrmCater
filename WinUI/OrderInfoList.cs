@@ -17,6 +17,7 @@ namespace WinUI
             InitializeComponent();
         }
         Bll.OrderInfoBll bll = new Bll.OrderInfoBll();
+        //订单id
         int _oId;
         private void OrderInfoList_Load(object sender, EventArgs e)
         {
@@ -81,12 +82,13 @@ namespace WinUI
                 LoadOrderDishList(_oId);
             }
         }
-       
+
         //刷新这个点过的菜
-        public void  LoadOrderDishList(int _oId)
+        public void LoadOrderDishList(int _oId)
         {
             dgvOrderDetail.AutoGenerateColumns = false;
             dgvOrderDetail.DataSource = bll.GetOrderDetailInfos(_oId);
+            GetAllCount();
         }
         //修改数量
         private void dgvOrderDetail_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -95,7 +97,7 @@ namespace WinUI
             int id = Convert.ToInt32(row.Cells[0].Value);
             int count = Convert.ToInt32(row.Cells[e.ColumnIndex].Value);
             //修改数量后开始
-            if(bll.UpdateCountOrder(id, count))
+            if (bll.UpdateCountOrder(id, count))
             {
                 GetAllCount();
             }
@@ -104,7 +106,7 @@ namespace WinUI
         public void GetAllCount()
         {
             var row = dgvOrderDetail.Rows;
-            decimal total=0;
+            decimal total = 0;
             for (int i = 0; i < row.Count; i++)
             {
                 int count = Convert.ToInt32(row[i].Cells[2].Value);
@@ -116,15 +118,40 @@ namespace WinUI
         //删除已经点过的菜品
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            var row = dgvOrderDetail.SelectedRows;
-            if(row.Count>0)
+            var row = dgvOrderDetail.SelectedRows;       //拿到的时选中的多行是个集合
+            var rows = dgvOrderDetail.SelectedRows[0];   //这就是已经拿到选中的那一行了，就是单的一一个listcount
+           // rows.Cells[].Value
+            if (row.Count > 0)
             {
-                DeleteOrderInfo();
+                int removeId = Convert.ToInt32(row[0].Cells[0].Value);
+                if (bll.DeleteOrderDetail(removeId))
+                {
+                    var index = row[0].Index;
+                    var index2 = rows.Index;
+
+                    // dgvOrderDetail.Rows.RemoveAt(index);  //出现不能够移除的异常
+                    OrderInfoList_Load(null,null);
+                }
             }
             else
             {
                 MessageBox.Show("请选择要删除的菜品！");
             }
+        }
+
+        private void btnOrder_Click(object sender, EventArgs e)
+        {
+            //拿到总的钱
+            decimal money = Convert.ToDecimal(lblMoney.Text);
+            //拿到订单Id，
+            if (_oId!=0)
+            {
+                if(bll.UpdateMoney(_oId, money))
+                {
+                    MessageBox.Show("下单完成");
+                }
+            }
+            //执行更新的数量
         }
     }
 }

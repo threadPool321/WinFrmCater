@@ -202,6 +202,7 @@
             this.btnOrder.TabIndex = 5;
             this.btnOrder.Text = "下单";
             this.btnOrder.UseVisualStyleBackColor = true;
+            this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
             // 
             // btnRemove
             // 
@@ -216,7 +217,6 @@
             // dgvOrderDetail
             // 
             this.dgvOrderDetail.AllowUserToAddRows = false;
-            this.dgvOrderDetail.AllowUserToDeleteRows = false;
             this.dgvOrderDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrderDetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column5,
@@ -226,6 +226,7 @@
             this.dgvOrderDetail.Location = new System.Drawing.Point(6, 41);
             this.dgvOrderDetail.Name = "dgvOrderDetail";
             this.dgvOrderDetail.RowTemplate.Height = 23;
+            this.dgvOrderDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvOrderDetail.Size = new System.Drawing.Size(410, 435);
             this.dgvOrderDetail.TabIndex = 0;
             this.dgvOrderDetail.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderDetail_CellEndEdit);

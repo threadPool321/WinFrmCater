@@ -19,6 +19,8 @@ namespace WinUI
         {
             InitializeComponent();
         }
+        //记录餐桌的信息
+        private ListViewItem tableItem;
         #region 窗体事件
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -115,7 +117,8 @@ namespace WinUI
             listView.MultiSelect = false; //不能进行多选
             //进行双击表示进行开单状态，或者是进行在点菜状态
             listView.MouseDoubleClick += ListView_MouseDoubleClick;
-
+            //进行点击时记录餐桌的信息
+            listView.Click += ListView_Click;
             foreach (var item in list)
             {
                 ListViewItem lItem = new ListViewItem(item.TTitle, item.TIsFree==1?0:1);
@@ -124,6 +127,12 @@ namespace WinUI
             }
             //4\将ListView加入当前选中的TabPage
             tabPage.Controls.Add(listView);
+        }
+
+        private void ListView_Click(object sender, EventArgs e)
+        {
+            ListView item = sender as ListView;
+            tableItem= item.SelectedItems[0];  //拿到每一个项选择的项，并且得到tableId
         }
 
         Bll.OrderInfoBll bll = new Bll.OrderInfoBll();
@@ -137,8 +146,7 @@ namespace WinUI
             var tableId = viewItem.Tag;
             //双击这个图标就是意味着已经开始开单了（空闲状态），如果非空闲的话那么就是可以在继续进行点菜
             if (viewItem.ImageIndex == 0)
-            {
-                if (bll.InsertOrder(Convert.ToInt32(tableId)))
+            { 
                 {
                     //开单成功后就可以修改图片
                     viewItem.ImageIndex = 1;  //修改这个图片                    
@@ -151,6 +159,26 @@ namespace WinUI
             orderInfoList.Show();
 
         }
+        //显示结账菜单
+        private void menuOrder_Click(object sender, EventArgs e)
+        {
+            if(tableItem==null)
+            {
+                MessageBox.Show("选择要进行结账的餐桌");
+                return;
+            }
+            if(tableItem.ImageIndex==0)  //空闲状态
+            {
+                MessageBox.Show("空闲状态不能结账");
+                return;
+            }
+            //点击结账时，判断能否进行结账功能（该餐桌是否空闲）
+            OrderPay or = FrmSingletonFactory.CreatePay();
+            or.Tag = tableItem.Tag;  //这个tag就是给哪一个餐桌，餐桌的ID
+            or.Show();
+            or.Activate();
+        }
+
     }
 }
 //开单的餐桌，我们双击可以进行加菜操作

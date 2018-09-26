@@ -103,6 +103,7 @@
             this.menuOrder.Size = new System.Drawing.Size(76, 85);
             this.menuOrder.Text = "订单";
             this.menuOrder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.menuOrder.Click += new System.EventHandler(this.menuOrder_Click);
             // 
             // menuQuit
             // 
