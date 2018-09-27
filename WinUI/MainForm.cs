@@ -174,11 +174,16 @@ namespace WinUI
             }
             //点击结账时，判断能否进行结账功能（该餐桌是否空闲）
             OrderPay or = FrmSingletonFactory.CreatePay();
+            or.UpdateTableEvent += Or_UpdateTableEvent;
             or.Tag = tableItem.Tag;  //这个tag就是给哪一个餐桌，餐桌的ID
             or.Show();
             or.Activate();
         }
 
+        private void Or_UpdateTableEvent()
+        {
+            tableItem.ImageIndex = 0;
+        }
     }
 }
 //开单的餐桌，我们双击可以进行加菜操作

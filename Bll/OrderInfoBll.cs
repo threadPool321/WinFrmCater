@@ -21,7 +21,7 @@ namespace Bll
         {
             return dal.GetOrderMoneyByTid(id);
         }
-            public bool OrderDish(int orderId, int dishId)
+        public bool OrderDish(int orderId, int dishId)
         {
             return dal.OrderDish(orderId, dishId) > 0;
         }
@@ -37,9 +37,14 @@ namespace Bll
         {
             return dal.DeleteOrderDetail(id) > 0;
         }
-        public bool UpdateMoney(int oid,decimal money)
+        public bool UpdateMoney(int oid, decimal money)
         {
             return dal.UpdateMoney(oid, money) > 0;
+        }
+        //结账
+        public bool SettleAccounts(int tableId, int memberId, decimal discount, decimal payMoney)
+        {
+            return dal.SettleAccounts(tableId,memberId,discount,payMoney)>0;
         }
     }
 }

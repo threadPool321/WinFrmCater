@@ -100,5 +100,58 @@ namespace Dal
             listPara.Add(new System.Data.SQLite.SQLiteParameter("@id",oId));
             return SqliteHelper.ExecuteNonQuery(sql,listPara.ToArray());
         }
+        //开始结账功能
+        public int SettleAccounts(int tableId,int memberId,decimal discount,decimal payMoney)
+        {
+            //根据连接对象开始事务
+            using (System.Data.SQLite.SQLiteConnection conn = new System.Data.SQLite.SQLiteConnection(System.Configuration.ConfigurationManager.ConnectionStrings["conn"].ConnectionString))
+            {
+                conn.Open();
+                System.Data.SQLite.SQLiteTransaction tran= conn.BeginTransaction();
+                int count = 0;
+                try
+                {
+                    System.Data.SQLite.SQLiteCommand comm = new System.Data.SQLite.SQLiteCommand();
+                    comm.Transaction = tran;
+
+                    //1、更改订单状态,如果是会员则记录会员信息
+                    string sql = "update OrderInfo  set ispay=1 ";
+                    if(memberId>0)  //如果是会员则记录下来，不是会员就直接是discount=1;
+                    {
+                        sql += ",memberId="+memberId+",discount="+discount;
+                    }
+                    else
+                    {
+                        sql += ",discount=1";
+                    }                  
+                    sql += " where tableId="+tableId+";";
+                    
+
+                    comm.CommandText = sql;
+                    count+=comm.ExecuteNonQuery();
+                    //2.将餐桌更改为空闲 1
+                    string sql2 = "update TableInfo set Tisfree=1 where tid="+tableId;
+                    comm.CommandText = sql2;
+                    count += comm.ExecuteNonQuery();
+                    //3.如果使用余额结账，那么就要更新会员的余额
+                    if(payMoney>0)
+                    {
+                        string sql3 = "update MemberInfo set Mmoney=Mmoney-" + payMoney + " where MId=" + memberId;
+                        comm.CommandText = sql3;
+                        count += comm.ExecuteNonQuery();
+                    }                    
+                    //执行成功后开始提交
+                    tran.Commit();
+                    return count;
+                }
+                catch (Exception)
+                {
+                    //执行错误后执行回滚
+                    count = 0;
+                    tran.Rollback();
+                    return count;              
+                }
+            }
+        }
     }
 }
